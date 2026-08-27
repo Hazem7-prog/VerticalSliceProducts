@@ -1,0 +1,33 @@
+@ProductApi_HostAddress = http://localhost:5072
+
+### Create a product - 201 Created
+POST {{ProductApi_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Mechanical Keyboard",
+  "description": "Wireless mechanical keyboard",
+  "price": 2499.99,
+  "stockQuantity": 15
+}
+
+### Duplicate product name - 409 Conflict
+POST {{ProductApi_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Mechanical Keyboard",
+  "description": "Duplicate name example",
+  "price": 1999,
+  "stockQuantity": 5
+}
+
+### Invalid request - 400 Bad Request
+POST {{ProductApi_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "",
+  "price": 0,
+  "stockQuantity": -1
+}
